@@ -135,7 +135,6 @@ class _LessonState extends State<LessonPage> {
   }
 
   lessonFinished() {
-    
     Random random = Random();
     int randomNo1 = random.nextInt(greeting.length);
     int randomNo2 = random.nextInt(completed.length);
@@ -279,8 +278,6 @@ class _LessonState extends State<LessonPage> {
                       message: lessonFinished()[1].toString(),
                       duration: const Duration(seconds: 5),
                     ).show(context);
-
-                    
                   } else
                     Container();
                   index < getContent.length - 1
