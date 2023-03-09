@@ -47,7 +47,6 @@ class _LessonState extends State<LessonPage> {
     getContentsId();
 
     refreshProgress();
-  
   }
 
   static int getPageNum() {
@@ -96,7 +95,7 @@ class _LessonState extends State<LessonPage> {
       });
     } else {
       setState(() {
-      index = 0;
+        index = 0;
       });
     }
     setState(() => isLoading = false);
@@ -105,9 +104,11 @@ class _LessonState extends State<LessonPage> {
   @override
   Future<void> dispose() async {
     super.dispose();
+    index = 0;
     progressElement = null;
     getContent.clear();
     getContentID.clear();
+    getContentLessonId.clear();
   }
 
   int index = 0;
@@ -278,19 +279,18 @@ class _LessonState extends State<LessonPage> {
                       message: lessonFinished()[1].toString(),
                       duration: const Duration(seconds: 5),
                     ).show(context);
-                  } else
-                    Container();
-                  index < getContent.length - 1
-                      ? setState(() {
-                          index++;
-                        })
-                      : setState(() {
-                          finishLesson = true;
-                          showFlushbar = false;
-                        });
+                  }
                   if (index < getContent.length - 1) {
+                    setState(() {
+                      index++;
+                    });
                     await addOrupdateProgress();
                     refreshProgress();
+                  } else {
+                    setState(() {
+                      finishLesson = true;
+                      showFlushbar = false;
+                    });
                   }
                 })
           ],
